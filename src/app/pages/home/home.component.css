@@ -1,0 +1,14 @@
+.card{
+  width: 80%;
+  margin-top: 20px;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table{
+  width: 100%;
+}

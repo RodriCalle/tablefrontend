@@ -1,0 +1,11 @@
+.second-spacer {
+  flex: 1 1 auto;
+}
+
+.title{
+  margin-left: 30px;
+}
+
+.toolbar{
+  width: 100%;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>
+        Table of Graduates From University First Degree Courses By Type Of Course
+      </mat-card-title>
+      <mat-card-subtitle>
+        To know more about this dataset, please visit this <a href="https://data.gov.sg/dataset/graduates-from-university-first-degree-courses-by-type-of-course?view_id=fa0e401c-6251-4a15-aebc-a5f3d2c85752&resource_id=eb8b932c-503c-41e7-b513-114cffbe2338"
+                                                              target="_blank"><b>page</b></a>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z5">
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef>Year</th>
+          <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+        </ng-container>
+        <ng-container matColumnDef="sex">
+          <th mat-header-cell *matHeaderCellDef>Sex</th>
+          <td mat-cell *matCellDef="let element">{{ element.sex }}</td>
+        </ng-container>
+        <ng-container matColumnDef="typeOfCourse">
+          <th mat-header-cell *matHeaderCellDef>Type of Course</th>
+          <td mat-cell *matCellDef="let element">{{ element.typeOfCourse }}</td>
+        </ng-container>
+        <ng-container matColumnDef="noOfGraduates">
+          <th mat-header-cell *matHeaderCellDef>No. of Graduates</th>
+          <td mat-cell *matCellDef="let element">{{ element.noOfGraduates }}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
