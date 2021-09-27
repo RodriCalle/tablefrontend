@@ -10,6 +10,7 @@ import {catchError, retry} from "rxjs/operators";
 export class GraduatesApiService {
   //Main endpoint
   basePath = 'http://itana.herokuapp.com/api/graduation'
+  basePathData = 'http://data.gov.sg/api/action/datastore_search?resource_id=eb8b932c-503c-41e7-b513-114cffbe2338'
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +33,27 @@ export class GraduatesApiService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getGraduationById(id: number): Observable<Graduation> {
+    return this.http.get<Graduation>(`${this.basePath}/${id}`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  updateGraduation(id: number, item: Graduation): Observable<Graduation>{
+    return this.http.put<Graduation>(`${this.basePath}/${id}`, JSON.stringify(item), this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  deleteGraduation(id: number): Observable<any> {
+    return this.http.delete<Graduation>(`${this.basePath}/${id}`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   getAllGraduations(): Observable<Graduation[]>{
     return this.http.get<Graduation[]>(this.basePath)
       .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getData() {
+    return this.http.get(this.basePathData);
   }
 }

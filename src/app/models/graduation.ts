@@ -1,7 +1,7 @@
 export interface Graduation {
   id: number;
-  year: number;
+  year: string;
   sex: string;
   typeOfCourse: string;
-  noOfGraduates: number;
+  noOfGraduates: string;
 }

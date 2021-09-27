@@ -12,23 +12,27 @@ import { HomeComponent } from './pages/home/home.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatTableModule} from "@angular/material/table";
+import {HttpClientModule} from "@angular/common/http";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    RouterModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatGridListModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        RouterModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatGridListModule,
+        MatTableModule,
+        HttpClientModule,
+        MatPaginatorModule
+    ],
   providers: [GraduatesApiService],
   bootstrap: [AppComponent]
 })
