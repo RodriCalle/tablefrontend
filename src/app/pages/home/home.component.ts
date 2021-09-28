@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {GraduatesApiService} from "../../services/graduates-api.service";
 import {Router} from "@angular/router";
@@ -14,20 +14,22 @@ import {MatSort} from "@angular/material/sort";
   styleUrls: ['./home.component.css'],
   providers: [GraduatesApiService]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  graduations: Graduation[] = [];
   dataSource = new MatTableDataSource();
   displayedColumns: String[] = ['id','year', 'sex', 'typeOfCourse', 'noOfGraduates'];
   graduationData: Graduation;
+  num: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private apiService: GraduatesApiService, private router: Router) {
     this.graduationData = {} as Graduation;
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
-    //this.seeddata();
+    /*this.seeddata();*/
     this.getAllInfo();
 
     /*this.apiService.getData().subscribe((response: any) => {
@@ -38,6 +40,7 @@ export class HomeComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   /*seeddata(): void {
@@ -52,7 +55,7 @@ export class HomeComponent implements OnInit {
   }*/
 
 
-  newGraduation(): void {
+  add(): void {
     const newGraduation = {year: this.graduationData.year,
     sex: this.graduationData.sex, typeOfCourse: this.graduationData.typeOfCourse,
     noOfGraduates: this.graduationData.noOfGraduates};
@@ -63,11 +66,28 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  update(): void {
+    const graduationToUpdate = {year: this.graduationData.year,
+      sex: this.graduationData.sex, typeOfCourse: this.graduationData.typeOfCourse,
+      noOfGraduates: this.graduationData.noOfGraduates};
+
+    this.apiService.updateGraduation(this.num, graduationToUpdate).subscribe((response: any) => {
+      this.getAllInfo();
+    });
+  }
+
+  delete(): void {
+    const newGraduation = {id: this.graduationData.id};
+    this.apiService.deleteGraduation(newGraduation.id).subscribe((response: any) => {
+      this.getAllInfo();
+    });
+  }
 
   getAllInfo(): void {
     this.apiService.getAllGraduations().subscribe((response: any) => {
       console.log(response);
       this.dataSource.data = response;
+      this.graduations = response;
     });
   }
 

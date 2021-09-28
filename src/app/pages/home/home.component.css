@@ -12,3 +12,26 @@
 table{
   width: 100%;
 }
+
+.container-mat-tab-group{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  width: 50%;
+  border-radius: 10px;
+}

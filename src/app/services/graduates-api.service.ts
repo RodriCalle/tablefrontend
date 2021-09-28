@@ -38,7 +38,7 @@ export class GraduatesApiService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  updateGraduation(id: number, item: Graduation): Observable<Graduation>{
+  updateGraduation(id: number, item: any): Observable<Graduation>{
     return this.http.put<Graduation>(`${this.basePath}/${id}`, JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }

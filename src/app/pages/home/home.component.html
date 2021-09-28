@@ -10,6 +10,89 @@
       </mat-card-subtitle>
     </mat-card-header>
 
+    <div class="container-mat-tab-group">
+      <mat-tab-group mat-align-tabs="center">
+
+        <mat-tab label="Create">
+          <form (submit)="add()" class="form">
+            <mat-form-field appearance="fill" class="field-year">
+              <input matInput placeholder="Year" name="year" required [(ngModel)]="graduationData.year">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-sex">
+              <mat-label>Sex</mat-label>
+              <mat-select required name="sex" [(ngModel)]="graduationData.sex">
+                <mat-option value="Males">Males</mat-option>
+                <mat-option value="Females">Females</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-typeOfCourse">
+              <input matInput placeholder="Type Of Course" name="typeOfCourse" required [(ngModel)]="graduationData.typeOfCourse">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-noOfGraduates">
+              <input matInput placeholder="No. Of Graduates" name="noOfGraduates" required [(ngModel)]="graduationData.noOfGraduates">
+            </mat-form-field>
+
+            <div class="btn-container"><button mat-raised-button type="submit" class="btn" color="primary">Create</button></div>
+
+          </form>
+        </mat-tab>
+
+        <mat-tab label="Read">
+
+        </mat-tab>
+
+        <mat-tab label="Update">
+          <form (submit)="update()" class="form">
+            <mat-form-field appearance="fill" class="field-id">
+              <mat-label>Id</mat-label>
+              <mat-select required name="id" [(ngModel)]="this.num">
+                <mat-option *ngFor="let graduation of graduations" [value]="graduation.id">{{graduation.id}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-year">
+              <input matInput placeholder="Year" name="year" required [(ngModel)]="graduationData.year">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-sex">
+              <mat-label>Sex</mat-label>
+              <mat-select required name="sex" [(ngModel)]="graduationData.sex">
+                <mat-option value="Males">Males</mat-option>
+                <mat-option value="Females">Females</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-typeOfCourse">
+              <input matInput placeholder="Type Of Course" name="typeOfCourse" required [(ngModel)]="graduationData.typeOfCourse">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="field-noOfGraduates">
+              <input matInput placeholder="No. Of Graduates" name="noOfGraduates" required [(ngModel)]="graduationData.noOfGraduates">
+            </mat-form-field>
+            <div class="btn-container"><button mat-raised-button type="submit" class="btn" color="primary">Update</button></div>
+          </form>
+        </mat-tab>
+
+        <mat-tab label="Delete">
+          <form (submit)="delete()" class="form">
+
+            <mat-form-field appearance="fill" class="field-id">
+              <mat-label>Id</mat-label>
+              <mat-select required name="id" [(ngModel)]="graduationData.id">
+                <mat-option *ngFor="let graduation of graduations" [value]="graduation.id">{{graduation.id}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="btn-container"><button mat-raised-button type="submit" class="btn" color="primary">Delete</button></div>
+
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
     <mat-card-content>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z5">
         <ng-container matColumnDef="id">
